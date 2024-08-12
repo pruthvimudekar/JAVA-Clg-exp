@@ -1,0 +1,53 @@
+// saving account
+public class SavingsAccount {
+    private double balance;
+    private static double annualInterestRate;
+
+    public SavingsAccount(double balance) {
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public static void setAnnualInterestRate(double newRate) {
+        annualInterestRate = newRate;
+    }
+
+    public double calculateMonthlyInterest() {
+        double monthlyInterest = (balance * annualInterestRate) / 12;
+        balance += monthlyInterest;
+        return monthlyInterest;
+    }
+
+    public static void main(String[] args) {
+        // Set the annual interest rate
+        SavingsAccount.setAnnualInterestRate(0.04); // 4% annual interest rate
+
+        // Create two savings account objects
+        SavingsAccount account1 = new SavingsAccount(2000.0);
+        SavingsAccount account2 = new SavingsAccount(3000.0);
+
+        // Calculate and display the monthly interest for both accounts
+        System.out.printf("Account 1 Monthly Interest: %.2f\n", account1.calculateMonthlyInterest());
+        System.out.printf("Account 1 New Balance: %.2f\n", account1.getBalance());
+
+        System.out.printf("Account 2 Monthly Interest: %.2f\n", account2.calculateMonthlyInterest());
+        System.out.printf("Account 2 New Balance: %.2f\n", account2.getBalance());
+
+        // Change the annual interest rate
+        SavingsAccount.setAnnualInterestRate(0.05); // 5% annual interest rate
+
+        // Calculate and display the monthly interest for both accounts again
+        System.out.printf("Account 1 Monthly Interest: %.2f\n", account1.calculateMonthlyInterest());
+        System.out.printf("Account 1 New Balance: %.2f\n", account1.getBalance());
+
+        System.out.printf("Account 2 Monthly Interest: %.2f\n", account2.calculateMonthlyInterest());
+        System.out.printf("Account 2 New Balance: %.2f\n", account2.getBalance());
+    }
+}
